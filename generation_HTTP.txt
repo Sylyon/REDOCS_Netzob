@@ -1,0 +1,19 @@
+HTTP Generation
+---------------
+
+1. launch server (open on port 8000)
+
+ $ python2 -m SimpleHTTPServer
+
+2. launch monitoring on loopback interface
+ # tcpdump -ilo -w file.pcap
+
+3. test differents clients
+ $ curl localhost:8000
+ $ wget localhost:8000
+ $ firefox localhost:8000
+
+3bis. test with modified user agent
+ $ curl -H "User-agent: arbitrarystring" localhost:8000
+
+
