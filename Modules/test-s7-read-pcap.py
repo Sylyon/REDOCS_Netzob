@@ -11,22 +11,42 @@ sym1=Symbol(messages=msgs1)
 
 print("-----------------------------------------------------------------------")
 
-print("writemessages:")
+"""print("writemessages:")
 for m in msgs2:
     print(m)
-sym2=Symbol(messages=msgs2)
-print("message 1 est binaire?")
+sym2=Symbol(messages=msgs2)"""
+"""print("message 1 est binaire?")
 print(Binmessage(msgs1))
 
 print("message 2 est binaire?")
 print(Binmessage(msgs2))
-"""
-print("All Format.splitStatic:")
-Format.splitStatic(sym)
+
+print("message 1 est static?")
+print(staticmessage(msgs1))
+
+print("message 2 est static?")
+print(staticmessage(msgs2))"""
+
+
+
+
+
+print("All Format.splitAligned:")
+sym=Symbol(messages=msgs1)
+Format.splitAligned(sym)
 for field in sym.fields:
     print(field)
 
+print("message 1 static field?")
+L=staticfield(sym)
+print(L)
 
+
+"print(len(sym.fields[0].getValues()[0]))"
+
+
+
+"""
 print("Format.splitStatic:")
 print(sym.fields[0]) # 1st field ok
 print(sym.fields[1]) # 2nd field not OK, variadic field
