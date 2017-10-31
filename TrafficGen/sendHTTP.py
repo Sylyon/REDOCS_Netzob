@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-import logging
-import sys
-logging.basicConfig(level=logging.INFO)
-sys.path.insert(0, "../../../netzob/src/")
-
 from netzob.all import *
+
 #---------------------------
+
 def sendHTTP(aMessage,ip,port):
 	""" Send a message to a HTTP server
 	
