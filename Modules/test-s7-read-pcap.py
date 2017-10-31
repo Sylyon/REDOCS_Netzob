@@ -36,9 +36,13 @@ sym=Symbol(messages=msgs1)
 Format.splitAligned(sym)
 for field in sym.fields:
     print(field)
-
+"""
 print("message 1 static field?")
 L=staticfield(sym)
+print(L)"""
+
+print("message 1 Bin field?")
+L=Binfield(sym)
 print(L)
 
 
