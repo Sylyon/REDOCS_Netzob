@@ -10,10 +10,18 @@ sym=Symbol(messages=msgs)"""
 
 def staticmessage(msgs):
 	result= True
-	m=len(str(msgs[0]))
+	m=len(msgs[0].data)
 	for i in range(1,len(msgs)-1):
-		if (m!=len(str(msgs[i]))):
+		if (m!=len(msgs[i].data)):
 			result= False
 	return result
 "print(staticmessage(msgs))"
+def Binmessage(msgs):
+	result= True
+	for j in range(0, len(msgs)-1):
+		for i in range(0,len(msgs[j].data)-1):
+			if (msgs[j].data[i]<128):
+				result= False
+	return result
+print(Binmessage(msgs))
 	
