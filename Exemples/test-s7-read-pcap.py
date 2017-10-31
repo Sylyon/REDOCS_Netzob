@@ -1,5 +1,5 @@
 from netzob.all import *
-
+from identmsg.py import *
 # we extract from the pcap every message which is going to 8000, i.e. the client messages 
 msgs1=PCAPImporter.readFile('s7-example-connection-readmessages.pcap', bpfFilter='dst port 102').values()
 msgs2=PCAPImporter.readFile('s7-example-connection-writemessages.pcap', bpfFilter='dst port 102').values()
