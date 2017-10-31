@@ -1,0 +1,16 @@
+#Cloner le git
+git clone https://github.com/SCADACS/snap7.git
+
+#Lire le make file
+cd snap7/build/unix
+sudo make -f x86_64_linux.mk install
+
+#Donner les droits d'éxécution aux executables
+cd ../../rich-demos/x86_64-linux/bin
+chmod 764 -R .
+
+#Lancer le server
+sudo ./serverdemo
+
+#lancer le client
+./clientdemo
