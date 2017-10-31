@@ -17,5 +17,5 @@ By default C12_U1 is writing C12
 
 Exemples : 
 C1R1W2R1D1 is Connection, 1 read, 2 write, 1 read, deconnection.
-3{C1D1} is Connection, Deconnection, Connection, Deconnection,Connection, Deconnection.
-2{R1W1}D1 is 1 read, 1 write, 1 read, 1 write, deconnection.
+3[C1D1]    is Connection, Deconnection, Connection, Deconnection,Connection, Deconnection.
+2[R1W1]D1  is 1 read, 1 write, 1 read, 1 write, deconnection.
