@@ -12,7 +12,7 @@ def multiSplitAligned(msgs):
 
 	Authors: Bastien DROUOT
 
-	Date: 01/11/2017 : 11h00
+	Date: 31/10/2017 : 9h45
 	"""
 	sym=Symbol(messages=msgs)
 	Format.splitAligned(sym)
