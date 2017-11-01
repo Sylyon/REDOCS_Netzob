@@ -2,6 +2,8 @@
 
 from netzob.all import *
 from Levenshtein import distance as Ldist
+import socket
+
 def sendTCP(msgs,ip,port):
 	""" Send a message to a server
 	
@@ -29,6 +31,19 @@ def sendTCP(msgs,ip,port):
 	channel.close()
 	return received_datas
 
+def sendTCP_raw(msgs,ip,port):
+        """
+        sendTCP_raw - same as sendTCP but without Symbol processing 
+                      or channel initialization (thus _much_ faster)
+        """
+	s=socket.socket()
+	s.connect((ip,port))
+	r=[]
+	for m in msgs:
+		s.send(m.data)
+		r.append(s.recv(1000))
+	return r
+
 def ressemblance(fileRoute):
 	""" Ressemblance
 	
@@ -46,7 +61,7 @@ def ressemblance(fileRoute):
 	port = 102
 	ip = "157.136.198.69"
 	msgs=PCAPImporter.readFile(fileRoute, bpfFilter='dst port 102').values()
-	rep1=sendTCP(msgs,ip,port)
+	rep1=sendTCP_raw(msgs,ip,port)
 	msgs=PCAPImporter.readFile(fileRoute, bpfFilter='src port 102').values()
 	sym=Symbol(messages=msgs)
 	rep2=list()
