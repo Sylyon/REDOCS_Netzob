@@ -9,6 +9,11 @@ for m in msgs1:
     print(m)
 sym1=Symbol(messages=msgs1)
 
+print("readmessages:")
+for m in msgs2:
+    print(m)
+sym2=Symbol(messages=msgs2)
+
 print("-----------------------------------------------------------------------")
 
 """print("writemessages:")
@@ -36,15 +41,23 @@ sym=Symbol(messages=msgs1)
 Format.splitAligned(sym)
 for field in sym.fields:
     print(field)
-"""
-print("message 1 static field?")
+
+"""print("message 1 static field?")
 L=staticfield(sym)
 print(L)"""
 
+"""print("message 1 form?")
+L=form(sym)
+print(L)"""
+
+print("checkform msgs1 msgs2")
+B=Checkform(msgs1,msgs2)
+print(B)
+
+"""
 print("message 1 Bin field?")
 L=Binfield(sym)
-print(L)
-
+print(L)"""
 
 "print(len(sym.fields[0].getValues()[0]))"
 
