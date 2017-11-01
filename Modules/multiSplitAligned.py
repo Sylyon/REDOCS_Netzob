@@ -58,3 +58,6 @@ if __name__ == '__main__':
 	D=frequent_partial_msg(L)
 	for length in D: # we browse for every length found
 		print(D[length])
+		# get most frequent
+		mf=max(D[length],key=lambda x:D[length][x])
+		print("most frequent:", mf)
