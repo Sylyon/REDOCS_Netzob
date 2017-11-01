@@ -2,21 +2,23 @@
 
 from netzob.all import *
 from Levenshtein import distance as Ldist
+import socket
+
 def sendTCP(msgs,ip,port):
 	""" Send a message to a server
 	
 	Open a chanel, send the message, close the chanel and return the answer from the server
 
-    Args: 
-    	msgs (string)     : The messages capture in the pcap.
-    	ip (string)       : The ip adress of the serveur
-    	port (int)        : The port of the server
+	Args: 
+		msgs (string)     : The messages capture in the pcap.
+		ip (string)       : The ip adress of the serveur
+		port (int)        : The port of the server
 
-    Returns:
+	Returns:
 
-    Authors: Bastien DROUOT
+	Authors: Bastien DROUOT
 
-    Date: 01/11/2017 : 11h45
+	Date: 01/11/2017 : 11h45
 	"""
 	sym=Symbol(messages=msgs)
 	received_datas=list()
@@ -29,24 +31,37 @@ def sendTCP(msgs,ip,port):
 	channel.close()
 	return received_datas
 
+def sendTCP_raw(msgs,ip,port):
+	"""
+	sendTCP_raw - same as sendTCP but without Symbol processing 
+	              or channel initialization (thus _much_ faster)
+	"""
+	s=socket.socket()
+	s.connect((ip,port))
+	r=[]
+	for m in msgs:
+		s.send(m.data)
+		r.append(s.recv(1000))
+	return r
+
 def ressemblance(fileRoute):
 	""" Ressemblance
 	
 	Donne la resemblance le rejeu et la réponce 
-    Args:
-    	fileRoute (string)   : Le chemin du fichier pcapc
+	Args:
+		fileRoute (string)   : Le chemin du fichier pcapc
 
-    Returns:
-    	rep 2 (List)         : La resemblance du message recut et du message attendu ( chaque element de la list représent la distance Levenshtein entre les messages)
+	Returns:
+		rep 2 (List)         : La resemblance du message recut et du message attendu ( chaque element de la list représent la distance Levenshtein entre les messages)
 
-    Authors: Bastien DROUOT
+	Authors: Bastien DROUOT
 
-    Date: 01/11/2017 : 15h00
+	Date: 01/11/2017 : 15h00
 	"""
 	port = 102
 	ip = "157.136.198.69"
 	msgs=PCAPImporter.readFile(fileRoute, bpfFilter='dst port 102').values()
-	rep1=sendTCP(msgs,ip,port)
+	rep1=sendTCP_raw(msgs,ip,port)
 	msgs=PCAPImporter.readFile(fileRoute, bpfFilter='src port 102').values()
 	sym=Symbol(messages=msgs)
 	rep2=list()
