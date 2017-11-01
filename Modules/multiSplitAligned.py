@@ -12,7 +12,7 @@ def frequent_partial_msg(L):
 	"""
 	d,r={},{} # two dict to avoid 'RuntimeError: dictionary changed size during iteration'
 	for l in range(2,max([len(x) for x in L])):
-		d[l]=dict(Counter([x[:l] for x in L]))
+		d[l]=dict(Counter([x[:l] for x in L if len(x)>=l]))
 		# get rid of unique items
 		r[l]=copy.copy(d[l]) 
 		for k in d[l]:
