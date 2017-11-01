@@ -13,10 +13,10 @@ def searchMessageByte(m, searchQuery):
         searchByte = searchQuery.encode()
     else:
         searchByte = codecs.encode(searchQuery)
-    if len(m) < len(searchQuery):
+    if len(m.data) < len(searchQuery):
         raise ValueError('Length of search exceeds package')
         return -1
-    messageHexStr =binascii.hexlify(m.data()).decode("utf-8")
+    messageHexStr =binascii.hexlify(m.data).decode("utf-8")
     searchHexStr = binascii.hexlify(searchByte).decode("utf-8")
     
     if searchHexStr in messageHexStr:
