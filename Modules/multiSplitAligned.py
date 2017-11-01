@@ -41,21 +41,20 @@ def multiSplitAligned(msgs):
 			if i>4:
 				rep=list() # Liste de ligne
 				for line in field.getValues():
-					tmp=list() # Liste de chaque octé d'une ligne
-					for elem in line:
-						tmp.append(elem)
-					rep.append(tmp)
+					rep.append(line)
 				#TODO
 				break
 		i=i+1
-	return True
+	return rep
 
 if __name__ == '__main__':
 	msgs=PCAPImporter.readFile('../S7-Pcap/C1.pcap', bpfFilter='dst port 102').values()
-	multiSplitAligned(msgs)
+	rep=multiSplitAligned(msgs)
 
-	L=[m.data for m in msgs]
+	L=rep
+	print(L)
 	D=frequent_partial_msg(L)
+	print (D)
 	for length in D: # we browse for every length found
 		print(D[length])
 		# get most frequent
