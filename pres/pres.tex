@@ -128,10 +128,10 @@ pil/.style={
 \date{November 2, 2017} 
 
 
-%\logo{%
-%    \includegraphics[width=1cm,height=0.5cm,keepaspectratio]{limoges.jpg}~%
-%    \includegraphics[width=1cm,height=0.5cm,keepaspectratio]{paris2logo.jpg}%
-%}
+\logo{%
+    \includegraphics[width=2cm,height=1cm,keepaspectratio]{redocsFullColor-W.png}~%
+    %\includegraphics[width=1cm,height=0.5cm,keepaspectratio]{paris2logo.jpg}%
+}
 
 %\logo{\includegraphics[height=5mm]{limoges.jpg}}
 
@@ -174,9 +174,10 @@ $\Rightarrow$ possibility to discuss with the server with the protocol
 Passive framework for analysing transmission
 \begin{itemize}
 \item symbol
-\item \textit{Format.splitAligned(s)}
-\item \textit{Format.splitStatic(s)}
-\item \textit{Format.splitDelimiter(s,Raw($listofbytes$))}
+\item \textit{Format.splitStatic(s)}: align static set of field at the same position
+\item \textit{Format.splitAligned(s)}: align static set of bytes 
+\item \textit{Format.splitDelimiter(s,Raw($listofbytes$))}: separate fields with the given delimiters
+\item \textit{Channel.Write}: allow sending TCP message to the server
 \end{itemize}
 
 
@@ -293,27 +294,14 @@ Delimiter screen shot
   \end{center}
 \end{frame}
 
-\begin{frame}{Getting Information}
-getting pcap
-\end{frame}
+
 
 \begin{frame}{Divide and Conquer}
-
-
-sorting client server
-
-sorting type of request (s7: co, rm, wm, dc)
-
-recognize field (delimiters approach, Shaping to split aligns)
-\end{frame}
-
-\begin{frame}{Analysing Shape}
+\includegraphics[scale=0.25]{Sorting_by_type.png}
 
 \end{frame}
 
-\begin{frame}
-IDK what is left i guess
-\end{frame}
+
 %\section{Basic Tools}
 %\begin{frame}
 %
@@ -361,17 +349,34 @@ IDK what is left i guess
   \end{center}
 \end{frame}
 
-\begin{frame}{getting pcap and sorting}
-azefazc
-\end{frame}
-
 %
-\begin{frame}
-delimiters
+\begin{frame}{Delimiters}
+\begin{itemize}
+\item Statistical research
 
-shaping to split
+\bigskip
+
+\item Active verification
+
+\bigskip
+
+\item Double elimination
+\end{itemize}
 
 \end{frame}
+
+\begin{frame}{Delimiters using}
+screenshots
+\end{frame}
+
+\begin{frame}{SmartAligned}
+ALLO BASTIEN
+\end{frame}
+
+\begin{frame}{SmartAligned}
+screenshot
+\end{frame}
+
 
 
 \begin{frame}{Characterizing Fields}
@@ -401,12 +406,14 @@ shaping to split
   \end{center}
 \end{frame}
 
-\begin{frame}
-static/dyn?
+\begin{frame}{Characterizing Fields}
+\begin{itemize}
+\item Static / Dynamic
 
-bin/text?
+\bigskip
 
-nb
+\item Txt / Bin
+\end{itemize}
 \end{frame}
 
 
@@ -438,10 +445,21 @@ nb
   \end{center}
 \end{frame}
 
+\begin{frame}{Fields Order Importance}
+
+\end{frame}
+
+\begin{frame}{Finding Incrementation }
+\end{frame}
+
+
+
+
+
 \input{fuzzing.tex}
 
 
-\begin{frame}{Verifying hypothesis}
+\begin{frame}{Verifying Hypothesis}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -468,6 +486,23 @@ nb
   \end{center}
   
   \end{frame}
+  
+  \begin{frame}{Verifying Hypothesis}
+  \begin{itemize}
+  \item Change a static field
+
+  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
+  
+  \bigskip
+
+  \item Put binary value in a text field
+  
+  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
+  \end{itemize}
+  
+  and a lot more !!!
+  
+  \end{frame}
 
 
 \section{Future Work}
@@ -476,5 +511,17 @@ nb
 	\tableofcontents[currentsection]
 \end{frame}
 
+
+\begin{frame}{Future Work}
+\begin{itemize}
+\item Search Crucial Bytes 
+\item 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Conclusion}
+
+\end{frame}
 
 \end{document}
