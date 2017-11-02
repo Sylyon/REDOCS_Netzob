@@ -8,6 +8,18 @@ import random
 import identmsg
 from clustering import hamming_byte
 
+def sendTCP_raw_single(m,ip,port):
+    """
+    sendTCP_raw_singe - same as sendTCP_raw but for single message
+    """
+    s=socket.socket()
+    s.settimeout(1)
+    s.connect((ip,port))
+    s.send(m.data)
+    #print ("RetVal: %s" % s.recv(1000))
+    return s.recv(1000)
+
+
 def sendTCP_raw_bytes(data,ip,port):
     """
     sendTCP_raw_bytes - same as sendTCP_raw_singe but for raw bytes
@@ -52,12 +64,21 @@ def diff_msg(sym,fi,val,ip,port):
     param: ip, port to connect to
     """
     orig=sym.getValues()[0]
+    try:
+        respOrig=sendTCP_raw_bytes(orig,ip,port)
+    except socket.timeout:
+        return False
+
     msg=b''
     for i in range(len(sym.fields)):
         msg+=sym.fields[i].getValues()[0] if fi!=i else val
     try:
         resp=sendTCP_raw_bytes(msg,ip,port)
-        return hamming_byte(resp,orig)
+        print ("Original response:")
+        print (orig)
+        print ("Fuzzed response:")
+        print (resp)
+        return hamming_byte(resp,orig)/len(orig)
     except socket.timeout:
         return False
 
@@ -67,12 +88,37 @@ if __name__ == '__main__':
     #print(createErrorMsgs(messages,'157.136.198.69', 102))
     sym=Symbol(messages=messages.values())
     Format.splitAligned(sym)
-    for idx,field in enumerate(sym.fields):
-        if identmsg.is_static(field):
-            print ("Index %d is static!" % idx)
-        else:
-            print ("Index %d is dynamic!" % idx)
-            print (field)
+#    for idx,field in enumerate(sym.fields):
+#        if not identmsg.is_static(field):
+#            print ("Index %d is dynamic!" % idx)
+#            print ("Type is %s" % identmsg.detect_encoding(field))
+#            print ("Length is %d" % len(field.getValues()[0]))
+        
+        #else:
+        #    print ("Index %d is dynamic!" % idx)
+            #print (field)
     #print (myTup)
-    print("diff:", diff_msg(sym,0,b'\x03\x00', "157.136.198.69", 102))
-
+    print("The difference is:", diff_msg(sym,11,b'\x03\x00\xff', "157.136.198.69", 102))
+"""
+Index 1 is dynamic!
+Type is BINARY
+Length is 4
+Index 3 is dynamic!
+Type is BINARY
+Length is 0
+Index 5 is dynamic!
+Type is BINARY
+Length is 0
+Index 7 is dynamic!
+Type is BINARY
+Length is 1
+Index 9 is dynamic!
+Type is BINARY
+Length is 5
+Index 11 is dynamic!
+Type is BINARY
+Length is 3
+Index 13 is dynamic!
+Type is BINARY
+Length is 1
+"""
