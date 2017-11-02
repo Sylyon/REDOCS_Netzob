@@ -129,7 +129,7 @@ pil/.style={
 
 
 \logo{%
-    \includegraphics[width=2cm,height=1cm,keepaspectratio]{zoby.png}%
+    %\includegraphics[width=2cm,height=1cm,keepaspectratio]{zoby.png}%
     \includegraphics[width=2cm,height=1cm,keepaspectratio]{redocsFullColor-W.png}~%
    
 }
@@ -139,6 +139,17 @@ pil/.style={
 \begin{frame}
 
 	\titlepage
+	\begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=2cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{onur.jpg}};
+    \node[xshift=4cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{bastien.png}};
+    \node[xshift=6cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{florent.png}};
+    \node[xshift=8cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{xlim.png}};
+    \node[xshift=10cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{amossys.png}};
+\end{tikzpicture}
+
+\begin{center}
+Supervised By Fr\'{e}d\'{e}ric Guih\'{e}ry
+\end{center}
 \end{frame}
 
 
@@ -546,8 +557,8 @@ pil/.style={
 
 \begin{frame}{Future Work}
 \begin{itemize}
-\item Search Crucial Bytes 
-\item 
+\item  
+\item  
 \end{itemize}
 
 \end{frame}
