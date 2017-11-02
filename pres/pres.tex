@@ -239,41 +239,6 @@ Delimiter screen shot
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
     every node/.style={fill=white, font=\sffamily}, align=center]
-  % Specification of nodes (position, etc.)
-%  \node (start)             [activityStarts]              {Activity starts};
-%  \node (onCreateBlock)     [process, below of=start]          {onCreate()};
-%  \node (onStartBlock)      [process, below of=onCreateBlock]   {onStart()};
-%  \node (onResumeBlock)     [process, below of=onStartBlock]   {onResume()};
-%  \node (activityRuns)      [activityRuns, below of=onResumeBlock]
-%                                                      {Activity is running};
-%  \node (onPauseBlock)      [process, below of=activityRuns, yshift=-1cm]
-%                                                                {onPause()};
-%  \node (onStopBlock)       [process, below of=onPauseBlock, yshift=-1cm]
-%                                                                 {onStop()};
-%  \node (onDestroyBlock)    [process, below of=onStopBlock, yshift=-1cm] 
-%                                                              {onDestroy()};
-%    
-%  % Specification of lines between nodes specified above
-%  % with aditional nodes for description 
-%  \draw[->]             (start) -- (onCreateBlock);
-%  \draw[->]     (onCreateBlock) -- (onStartBlock);
-%  \draw[->]      (onStartBlock) -- (onResumeBlock);
-%  \draw[->]     (onResumeBlock) -- (activityRuns);
-%  \draw[->]      (activityRuns) -- node[text width=4cm]
-%                                   {Another activity comes in
-%                                    front of the activity} (onPauseBlock);
-%  \draw[->]      (onPauseBlock) -- node {The activity is no longer visible}
-%                                   (onStopBlock);
-%  \draw[->]       (onStopBlock) -- node {The activity is shut down by
-%                                   user or system} (onDestroyBlock);
-%
-%
-%
-%
-%
-%  \draw[->] (onPauseBlock.east) -- ++(2.6,0) -- ++(0,2) -- ++(0,2) --                
-%     node[xshift=1.2cm,yshift=-1.5cm, text width=2.5cm]
-%     {The activity comes to the foreground}(onResumeBlock.east);
 
 \node (Input)             [activityStarts]              {Input};
 
@@ -297,6 +262,35 @@ Delimiter screen shot
 
 
 
+\end{frame}
+
+
+
+\begin{frame}{Sorting Input}
+\begin{center}
+\scalebox{0.9}{
+\begin{tikzpicture}[node distance=1.5cm,
+    every node/.style={fill=white, font=\sffamily}, align=center]
+
+\node (Input)             [activityStarts]              {Input};
+
+\node (SI)     [startstop, below of=Input]          {Sorting};
+
+\node (DF)     [process, below of=SI]          {Delimiting Fields};
+
+\node (CF)     [process, below of=DF]          {Characterizing Fields};
+
+\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+
+\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+
+\draw[->]             (Input) -- (SI);
+\draw[->]             (SI) -- (DF);
+\draw[->]             (DF) -- (CF);
+\draw[->]             (CF) -- (AI);
+\draw[->]             (AI) -- (VH);
+  \end{tikzpicture}}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Getting Information}
@@ -340,10 +334,31 @@ IDK what is left i guess
 %
 %
 %\end{frame}
-\section{Reconstructing Fields}
-\begin{frame}
+\begin{frame}{Delimiting Fields}
+\begin{center}
+\scalebox{0.9}{
+\begin{tikzpicture}[node distance=1.5cm,
+    every node/.style={fill=white, font=\sffamily}, align=center]
 
-	\tableofcontents[currentsection]
+\node (Input)             [activityStarts]              {Input};
+
+\node (SI)     [process, below of=Input]          {Sorting};
+
+\node (DF)     [startstop, below of=SI]          {Delimiting Fields};
+
+\node (CF)     [process, below of=DF]          {Characterizing Fields};
+
+\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+
+\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+
+\draw[->]             (Input) -- (SI);
+\draw[->]             (SI) -- (DF);
+\draw[->]             (DF) -- (CF);
+\draw[->]             (CF) -- (AI);
+\draw[->]             (AI) -- (VH);
+  \end{tikzpicture}}
+  \end{center}
 \end{frame}
 
 \begin{frame}{getting pcap and sorting}
@@ -358,10 +373,32 @@ shaping to split
 
 \end{frame}
 
-\section {Characterizing Fields}
-\begin{frame}
 
-	\tableofcontents[currentsection]
+\begin{frame}{Characterizing Fields}
+\begin{center}
+\scalebox{0.9}{
+\begin{tikzpicture}[node distance=1.5cm,
+    every node/.style={fill=white, font=\sffamily}, align=center]
+
+\node (Input)             [activityStarts]              {Input};
+
+\node (SI)     [process, below of=Input]          {Sorting};
+
+\node (DF)     [process, below of=SI]          {Delimiting Fields};
+
+\node (CF)     [startstop, below of=DF]          {Characterizing Fields};
+
+\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+
+\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+
+\draw[->]             (Input) -- (SI);
+\draw[->]             (SI) -- (DF);
+\draw[->]             (DF) -- (CF);
+\draw[->]             (CF) -- (AI);
+\draw[->]             (AI) -- (VH);
+  \end{tikzpicture}}
+  \end{center}
 \end{frame}
 
 \begin{frame}
@@ -373,19 +410,65 @@ nb
 \end{frame}
 
 
-\section{Assessing the Impact of the Fields}
-\begin{frame}
 
-	\tableofcontents[currentsection]
+\begin{frame}{Assessing the Impact of the Fields}
+\begin{center}
+\scalebox{0.9}{
+\begin{tikzpicture}[node distance=1.5cm,
+    every node/.style={fill=white, font=\sffamily}, align=center]
+
+\node (Input)             [activityStarts]              {Input};
+
+\node (SI)     [process, below of=Input]          {Sorting};
+
+\node (DF)     [process, below of=SI]          {Delimiting Fields};
+
+\node (CF)     [process, below of=DF]          {Characterizing Fields};
+
+\node (AI)     [startstop, below of=CF]          {Assessing Impact of the Field};
+
+\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+
+\draw[->]             (Input) -- (SI);
+\draw[->]             (SI) -- (DF);
+\draw[->]             (DF) -- (CF);
+\draw[->]             (CF) -- (AI);
+\draw[->]             (AI) -- (VH);
+  \end{tikzpicture}}
+  \end{center}
 \end{frame}
 
 \input{fuzzing.tex}
 
-\section{Experiments demonstration}
-\begin{frame}
 
-	\tableofcontents[currentsection]
-\end{frame}
+\begin{frame}{Verifying hypothesis}
+\begin{center}
+\scalebox{0.9}{
+\begin{tikzpicture}[node distance=1.5cm,
+    every node/.style={fill=white, font=\sffamily}, align=center]
+
+\node (Input)             [activityStarts]              {Input};
+
+\node (SI)     [process, below of=Input]          {Sorting};
+
+\node (DF)     [process, below of=SI]          {Delimiting Fields};
+
+\node (CF)     [process, below of=DF]          {Characterizing Fields};
+
+\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+
+\node (VH)     [startstop, below of=AI]          {Verifying Hypothesis};
+
+\draw[->]             (Input) -- (SI);
+\draw[->]             (SI) -- (DF);
+\draw[->]             (DF) -- (CF);
+\draw[->]             (CF) -- (AI);
+\draw[->]             (AI) -- (VH);
+  \end{tikzpicture}}
+  \end{center}
+  
+  \end{frame}
+
 
 \section{Future Work}
 \begin{frame}
