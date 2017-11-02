@@ -1,0 +1,289 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{animate}
+\usepackage{calc}
+\newcounter{m} % Number of sides of the polygon
+\setcounter{m}{2}
+\newcounter{c} % Internal Control Counter
+\usepackage{hyperref}
+\hypersetup{pdfpagemode=FullScreen}
+\usefonttheme{professionalfonts}
+\usepackage{times}
+\usepackage{changepage}
+\providecommand\thispdfpagelabel[1]{}
+
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usetikzlibrary{arrows,shapes}
+\usepackage{array,multirow,makecell}
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+\tikzset{
+pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{arrows,positioning}
+\usepackage{smartdiagram}
+\usepackage{metalogo}
+\usepackage{dtklogos}
+\setbeamertemplate{headline}{}
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot} {Onur, Bastien, Paul, Florent}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+\newcommand{\margin}{0\paperwidth}
+
+
+%\beamersetrightmargin{\margin}
+%\beamersetleftmargin{\margin}
+
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+
+
+\usetikzlibrary{shapes,snakes}
+
+%\input{tex_files/ZZ_newcommand1}
+
+\begin{document}
+
+%\usepackage{framed}
+%\usepackage{cite,url}
+%\usepackage{amsmath,amssymb}
+%\usepackage{amscd}
+%\usepackage[english] {babel}
+%\usepackage[pdftex]{graphicx,color}
+%\usepackage{stmaryrd}
+%\usepackage{amsmath}
+%\usepackage{xspace,calc}
+%\usepackage{games}
+%\usepackage{booktabs}
+%\usepackage{needspace}
+%\use package{times}
+%\usepackage{algorithmicx} % sorry
+
+\bibliography{abbrev3,crypto,add,add2}
+
+
+\title{Using NetZob for Active protocol reverse engineering }   
+\author{Onur Catakoglu , Bastien Drouot, Paul Germouty, Florent Tardif} 
+\date{November 2, 2017} 
+
+
+%\logo{%
+%    \includegraphics[width=1cm,height=0.5cm,keepaspectratio]{limoges.jpg}~%
+%    \includegraphics[width=1cm,height=0.5cm,keepaspectratio]{paris2logo.jpg}%
+%}
+
+%\logo{\includegraphics[height=5mm]{limoges.jpg}}
+
+\begin{frame}
+
+	\titlepage
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+
+
+	\tableofcontents
+
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Objectives-Attack Model}
+\begin{itemize}
+\item Reverse engineering transmission protocols
+
+$\Rightarrow$ characterize protocols' structure
+
+\item Client-owning Model
+
+$\Rightarrow$ possibility to discuss with the server with the protocol
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Previous Work \textbf{Netzob}}
+Passive framework for analysing transmission
+\begin{itemize}
+\item symbol
+\item \textit{Format.splitAligned(s)}
+\item \textit{Format.splitStatic(s)}
+\item \textit{Format.splitDelimiter(s,Raw($listofbytes$))}
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Exemples}
+symbol screen shot
+\end{frame}
+
+\begin{frame}{Exemples}
+Aligned screen shot
+\end{frame}
+
+\begin{frame}{Exemples}
+Static screen shot
+\end{frame}
+
+\begin{frame}{Exemples}
+Delimiter screen shot
+\end{frame}
+
+\section{RoadMap}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Road Map of GoodGuy ReverseIngBoy}
+
+\end{frame}
+\begin{frame}{Getting Information}
+getting pcap
+\end{frame}
+
+\begin{frame}{Divide and Conquer}
+
+
+sorting client server
+
+sorting type of request (s7: co, rm, wm, dc)
+
+recognize field (delimiters approach, Shaping to split aligns)
+\end{frame}
+
+\begin{frame}{Analysing Shape}
+
+\end{frame}
+
+\begin{frame}
+IDK what is left i guess
+\end{frame}
+%\section{Basic Tools}
+%\begin{frame}
+%
+%	\tableofcontents[currentsection]
+%\end{frame}
+%
+%\begin{frame}
+%getting pcap
+%
+%sorting pcap
+%
+%verify cruciality
+%
+%verify timeout
+%
+%send 1 message
+%...
+%
+%
+%\end{frame}
+\section{Reconstructing Fields}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{getting pcap and sorting}
+
+\end{frame}
+
+%
+\begin{frame}
+delimiters
+
+shaping to split
+
+\end{frame}
+
+\section {Characterizing Fields}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}
+static/dyn?
+
+bin/text?
+
+nb
+\end{frame}
+
+
+\section{Finding Protocol Behaviour}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}
+Stateless, relations
+\end{frame}
+
+\section{Experiments demonstration}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+\section{Future Work}
+\begin{frame}
+
+	\tableofcontents[currentsection]
+\end{frame}
+
+
+\end{document}
