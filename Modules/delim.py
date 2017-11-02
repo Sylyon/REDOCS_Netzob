@@ -28,9 +28,11 @@ def verifDelim(msgs):
     L=[x.data for x in msgs]
     D=possible_delim(L)
     Del=[]
-    print(D)
     d=D[0]
     for d in D:
+        ms=msgs[d[1]]
+        for i in range(0,len(d[0])):
+            ms=modifyMessageByte(ms, d[2]+i, 1)
         ms=modifyMessageByte(msgs[d[1]], d[2], 1)
         try:
             response = sendTCP_raw_single(ms, "157.136.198.69",102)
@@ -38,9 +40,9 @@ def verifDelim(msgs):
             #print("Socket timeout reached.")
             Del.append(d[0])
             pass
-    
-    return Del
-    #return D
+             
+
+    return removeDouble(Del)
     
 	
 
@@ -49,9 +51,12 @@ if __name__=="__main__":
     from netzob.all import *
     from imitateValidTraffic import *
     from replayTraffic import *
-    msgs=PCAPImporter.readFile('../S7-Pcap/Rs.pcap').values()
+    from removeDouble import *
+    msgs=PCAPImporter.readFile('../S7-Pcap/Ws.pcap').values()
     D=verifDelim(msgs)
     print(D)
+
+
     for d in D:
         sym=Symbol(messages=msgs)
         Format.splitDelimiter(sym,Raw(d))
