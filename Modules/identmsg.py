@@ -1,5 +1,6 @@
 from netzob.all import *
 import string
+import struct
 
 def is_static(field):
     """
