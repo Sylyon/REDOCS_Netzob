@@ -40,7 +40,29 @@ def createErrorMsgs(messages, ip, port):
             continue
     return rspList
 
+def diff_msg(sym,fi,val,ip,port):
+    """
+    diff_msg - modify one field to value and get the difference with the original
+    return False if timeout or the ratio of change
+    param: sym, symbol containing a message with
+    param: fi, field index of the field to alter
+    param: val, value to replace the field with
+    param: ip, port to connect to
+    """
+    orig=sym.getValues()[0]
+    msg=b''
+    for i in range(len(sym.fields)):
+        msg+=sym.fields[i].getValues()[0] if fi!=i else val
+    try:
+        resp=sendTCP_raw_bytes(msg,ip,port)
+        return hamming_byte(resp,orig)
+    except socket.timeout:
+        return False
+
 if __name__ == '__main__':
     print('Resemblance C1')
     messages = PCAPImporter.readFile("../S7-Pcap/C1.pcap")
-    print(createErrorMsgs(messages,'157.136.198.69', 102))
+    #print(createErrorMsgs(messages,'157.136.198.69', 102))
+    sym=Symbol(messages=messages.values())
+    diff_msg(sym,0,b'\x03\x00', "157.136.198.69", 102)
+
