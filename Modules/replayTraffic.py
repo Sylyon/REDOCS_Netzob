@@ -22,7 +22,7 @@ def sendTCP_raw_single(m,ip,port):
     sendTCP_raw_singe - same as sendTCP_raw but for single message
     """
     s=socket.socket()
-    s.settimeout(3)
+    s.settimeout(1)
     s.connect((ip,port))
     s.send(m.data)
     #print ("RetVal: %s" % s.recv(1000))
