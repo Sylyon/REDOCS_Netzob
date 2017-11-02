@@ -24,10 +24,36 @@ def possible_delim(L,th=0.9):
                 R.append((g, idx, pos))
     return R
 
-if __name__=="__main__":
-
-    from netzob.all import *
-
-    msgs=PCAPImporter.readFile('../S7-Pcap/Ws.pcap').values()
+def verifDelim(msgs):
     L=[x.data for x in msgs]
-    print(possible_delim(L))
+    D=possible_delim(L)
+    Del=[]
+    print(D)
+    d=D[0]
+    for d in D:
+        ms=modifyMessageByte(msgs[d[1]], d[2], 1)
+        try:
+            response = sendTCP_raw_single(ms, "157.136.198.69",102)
+        except socket.timeout:
+            #print("Socket timeout reached.")
+            Del.append(d[0])
+            pass
+    
+    return Del
+    #return D
+    
+	
+
+if __name__=="__main__":
+    from modify import *
+    from netzob.all import *
+    from imitateValidTraffic import *
+    from replayTraffic import *
+    msgs=PCAPImporter.readFile('../S7-Pcap/Rs.pcap').values()
+    D=verifDelim(msgs)
+    print(D)
+    for d in D:
+        sym=Symbol(messages=msgs)
+        Format.splitDelimiter(sym,Raw(d))
+        print(sym)
+        
