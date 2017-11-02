@@ -1,10 +1,15 @@
-\begin{frame}
-  stateless vs. stateful
-  \begin{itemize}
-    \item get a valid message
-    \item replay the message several time
-  \end{itemize}
-  %\includegraphics{}
+\begin{frame}\frametitle{stateless vs. stateful}
+
+  stateful : we need to understand the session mechanism beforehand
+
+  \begin{block}{Detection}
+    \begin{itemize}
+      \item get a valid message
+      \item replay the message several time
+      \item same messages ? \begin{tabular}{ccc}YES &$\Rightarrow$& stateless\\NO &$\Rightarrow$& stateful\end{tabular}
+    \end{itemize}
+  \end{block}
+
 \end{frame}
 
 \begin{frame}
