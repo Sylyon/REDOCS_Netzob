@@ -21,7 +21,7 @@ def detect_encoding(field):
     """
     v=field.getValues()
     data=b''.join([m for m in v])
-    if len([chr(c) in string.printable for c in data])==len(data):
+    if len([c for c in data if chr(c) in string.printable])==len(data):
         return "TEXT"
     if is_static(field):
         st={2:"H",4:"I",8:"L"}
