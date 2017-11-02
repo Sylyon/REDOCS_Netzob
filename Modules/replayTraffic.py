@@ -47,5 +47,5 @@ def statelessMsgs(messages, repeatCount, ip, port):
 
 if __name__ == '__main__':
     print('Resemblance C1')
-    messages = PCAPImporter.readFile("../S7-Pcap/C1.pcap")
+    messages = PCAPImporter.readFile("../S7-Pcaps/C1.pcap")
     print(statelessMsgs(messages,10,'157.136.198.69', 102))

@@ -30,7 +30,7 @@ def detectIncrement(msgs):
 
 
 if __name__ == '__main__':
-	msgs=PCAPImporter.readFile('../S7-Pcap/Rs.pcap', bpfFilter='dst port 102').values()
+	msgs=PCAPImporter.readFile('../S7-Pcaps/Rs.pcap', bpfFilter='dst port 102').values()
 	rep=detectIncrement(msgs)
 	for i in rep:
 		print("Increment detecter pour la Field n°{0}, de la ligne n°{1} à {2} pour le bit n°{3}".format(i[0],i[1],i[1]+1,i[2]))
