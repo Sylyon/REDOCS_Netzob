@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from netzob.all import *
+import copy
 
 def modifyMessageByte(m, index, newByte):
     assert isinstance(index,int), "Index is not an integer"
@@ -10,6 +11,7 @@ def modifyMessageByte(m, index, newByte):
         return -1
     tmp_data = bytearray(m.data)
     tmp_data[index] = newByte
-    m.data = tmp_data
-    return m
+    retM = copy.copy(m)
+    retM.data = tmp_data
+    return retM
 
