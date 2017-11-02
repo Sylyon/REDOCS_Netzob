@@ -5,6 +5,7 @@ from Levenshtein import distance as Ldist
 import socket
 import copy
 import random
+import identmsg
 
 def sendTCP_raw_bytes(data,ip,port):
     """
@@ -64,5 +65,13 @@ if __name__ == '__main__':
     messages = PCAPImporter.readFile("../S7-Pcap/C1.pcap")
     #print(createErrorMsgs(messages,'157.136.198.69', 102))
     sym=Symbol(messages=messages.values())
+    Format.splitAligned(sym)
+    for idx,field in enumerate(sym.fields):
+        if identmsg.is_static(field):
+            print ("Index %d is static!" % idx)
+        else:
+            print ("Index %d is dynamic!" % idx)
+            print (field)
+    #print (myTup)
     diff_msg(sym,0,b'\x03\x00', "157.136.198.69", 102)
 
