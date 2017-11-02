@@ -1,4 +1,5 @@
 from netzob.all import *
+import string
 
 def is_static(field):
     """
@@ -6,7 +7,7 @@ def is_static(field):
     return a boolean
     param: field as obtained with symbol.fields[i]
     """
-    l=field.getValues():
+    l=field.getValues()
     for v in l:
         if v!=l[0]:
             return False
@@ -19,15 +20,31 @@ def detect_encoding(field):
     param: field as obtained with symbol.fields[i]
     """
     v=field.getValues()
-    data=b''.join([m.data for m in v])
-    if len([c in string.printable for c in data])==len(data):
+    data=b''.join([m for m in v])
+    if len([chr(c) in string.printable for c in data])==len(data):
         return "TEXT"
     if is_static(field):
         st={2:"H",4:"I",8:"L"}
-        if len(v[0]) in [2,4,8]:
-            N=[struct.unpack(">"+,x)[0] for x in v]
-            print("%dbits INTEGER : min=%d, max=%d, mean=%f" % (len(v[0])*8, min(N), max(N), sum(N)/len(N)))
-            return "INTEGER OR BINARY"
+        lv=len(v[0])
+        if lv in [2,4,8]:
+            N=[struct.unpack(">"+st(lv),x)[0] for x in v]
+            return ("%dbits INTEGER[%d,%d] or BINARY" % (len(lv)*8, min(N), max(N)))
     else:
         return "BINARY"
 
+def get_shape(sym):
+    """
+    get_shape - shape of a symbol in the form
+                ((STATIC, BINARY), (DYNAMIC, TEXT), ...)
+    param: symbol to analyse
+    return shape tuple
+    """
+    return tuple([("STATIC" if is_static(f) else "DYNAMIC", detect_encoding(f)) for f in sym.fields])
+
+def is_shape(sym,shape):
+    """
+    is_shape - tell whether the symbol is of the shape shape
+    return boolean
+    param: symbol and shape obtain by get_shape
+    """
+    return get_shape(sym)==shape
