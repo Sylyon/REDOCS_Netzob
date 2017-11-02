@@ -74,12 +74,12 @@ def ressemblance(fileRoute):
 
 if __name__ == '__main__':
 	print('Resemblance C1')
-	print(ressemblance('../S7-Pcap/C1.pcap'))
+	print(ressemblance('../S7-Pcaps/C1.pcap'))
 	print('Resemblance R1')
-	print(ressemblance('../S7-Pcap/R1.pcap'))
+	print(ressemblance('../S7-Pcaps/R1.pcap'))
 	print('Resemblance W1')
-	print(ressemblance('../S7-Pcap/W1.pcap'))
+	print(ressemblance('../S7-Pcaps/W1.pcap'))
 	print('Resemblance Rs')
-	print(ressemblance('../S7-Pcap/Rs.pcap'))
+	print(ressemblance('../S7-Pcaps/Rs.pcap'))
 	print('Resemblance Ws')
-	print(ressemblance('../S7-Pcap/Ws.pcap'))
+	print(ressemblance('../S7-Pcaps/Ws.pcap'))

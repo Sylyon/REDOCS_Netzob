@@ -65,7 +65,7 @@ def shappingToSplitAligned(msgs):
 	return (msgs, msgs)
 
 if __name__ == '__main__':
-	msgs=PCAPImporter.readFile('../S7-Pcap/Ws_U3.pcap', bpfFilter='dst port 102').values()
+	msgs=PCAPImporter.readFile('../S7-Pcaps/Ws_U3.pcap', bpfFilter='dst port 102').values()
 
 	(shap,other)=shappingToSplitAligned(msgs)
 	

@@ -52,7 +52,7 @@ if __name__=="__main__":
     from imitateValidTraffic import *
     from replayTraffic import *
     from removeDouble import *
-    msgs=PCAPImporter.readFile('../S7-Pcap/Ws.pcap').values()
+    msgs=PCAPImporter.readFile('../S7-Pcaps/Ws.pcap').values()
     D=verifDelim(msgs)
     print(D)
 
