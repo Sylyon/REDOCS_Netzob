@@ -123,7 +123,7 @@ pil/.style={
 \bibliography{abbrev3,crypto,add,add2}
 
 
-\title{Using NetZob for Active protocol reverse engineering }   
+\title{Using Netzob for Active protocol reverse engineering }   
 \author{Onur Catakoglu , Bastien Drouot, Paul Germouty, Florent Tardif} 
 \date{November 2, 2017} 
 
@@ -155,41 +155,52 @@ pil/.style={
 
 \section{Introduction}
 \begin{frame}
-
 	\tableofcontents[currentsection]
 \end{frame}
 
-\begin{frame}{Objectives-Attack Model}
-\begin{itemize}
-\item Reverse engineering transmission protocols
+\begin{frame}{Goal}
 
-$\Rightarrow$ characterize protocols' structure
+  Reverse engineer protocols:
 
-\item Client-owning Model
+  determine how they work without documentation
 
-$\Rightarrow$ possibility to discuss with the server with the protocol
-\end{itemize}
-\end{frame}
+  ~
 
-\begin{frame}{Previous Work \textbf{Netzob}}
-Passive framework for analysing transmission
-\begin{itemize}
-\item symbol
-\item \textit{Format.splitStatic(s)}: align static set of field at the same position
-\item \textit{Format.splitAligned(s)}: align static set of bytes 
-\item \textit{Format.splitDelimiter(s,Raw($listofbytes$))}: separate fields with the given delimiters
-\item \textit{Channel.Write}: allow sending TCP message to the server
-\end{itemize}
-
+  \begin{block}{Attack Model}
+    \begin{itemize}
+      \item no previous knowledge of the protocol
+      \item access to a client implementation
+      \item passive monitoring / active querying of the server
+    \end{itemize}
+  \end{block}
 
 \end{frame}
 
+\begin{frame}{\textbf{Netzob}}
+  \em{Netzob}: framework helping the reverser to discover the protocol
+ 
+  ~
 
-\begin{frame}{Exemples}
+  Provide the following features:
+
+  \begin{itemize}
+    \item abstraction of requests with a symbolic representation with fields
+    \item tools to send TCP/symbolic messages to the server
+    \item symbolic functions to split messages in fields:\\
+    \quad\quad$\rightarrow$ \texttt{splitStatic}: use static messages parts\\
+    \quad\quad$\rightarrow$ \texttt{splitAligned}: detect moving reccurrent parts\\
+    \quad\quad$\rightarrow$ \texttt{splitDelimiter}: use manually entered delimiters
+  \end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Examples}
   Aligned screen shot (TODO: Onur)
 \end{frame}
 
-\begin{frame}{Exemples}
+\begin{frame}{Examples}
   Analyse with \texttt{SpliStatic}
 
   ~
@@ -197,7 +208,7 @@ Passive framework for analysing transmission
   \tiny\input{splitstatic.tex}
 \end{frame}
 
-\begin{frame}{Exemples}
+\begin{frame}{Examples}
   Analyse with \texttt{SplitDelimiter} with delimiter \texttt{\symbol{92}x02}
 
   ~
