@@ -65,7 +65,7 @@ def shappingToSplitAligned(msgs):
 	return (msgs, msgs)
 
 if __name__ == '__main__':
-	msgs=PCAPImporter.readFile('../S7-Pcaps/Ws_U3.pcap', bpfFilter='dst port 102').values()
+	msgs=PCAPImporter.readFile('../S7-Pcaps/C1.pcap', bpfFilter='dst port 102').values()
 
 	(shap,other)=shappingToSplitAligned(msgs)
 	
@@ -76,11 +76,13 @@ if __name__ == '__main__':
 	sym3=Symbol(messages=other)
 	Format.splitAligned(sym3)
 	i=0
-	for field in sym.fields:
+	"""for field in sym.fields:
 		print(field)
 		if i<len(sym2.fields):
 			print(sym2.fields[i])
 		if i<len(sym3.fields):
 			print(sym3.fields[i])
 		print('##########################')
-		i=i+1
+		i=i+1"""
+	print(sym)
+	print(sym2)
