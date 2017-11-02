@@ -1,11 +1,24 @@
+#!/usr/bin/env python3
 from netzob.all import *
 from sklearn.cluster import dbscan
 import math
 import copy
 
 def hamming_byte(x,y):
-    """
+    """ hamming_byte
+    
     hamming_bytes - hamming distance on the bytes
+
+    Args:
+        x         (byte)   : A byte
+        y         (byte)   : A byte 
+
+    Returns:
+                  (int)    : The hamming distance of X and y
+
+    Authors: Florant TARDIF
+
+    Date:
     """
     return sum([x!=y for x,y in zip(x,y)])
 
