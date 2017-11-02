@@ -1,6 +1,12 @@
 \begin{frame}\frametitle{stateless vs. stateful}
 
-  stateful : we need to understand the session mechanism beforehand
+  stateful : messages depends on a global state ans we need to understand the session mechanism beforehand
+
+  ~
+
+  stateless : we can perform analysis on each message taken separately
+
+  ~
 
   \begin{block}{Detection}
     \begin{itemize}
@@ -9,8 +15,19 @@
       \item same messages ? \begin{tabular}{ccc}YES &$\Rightarrow$& stateless\\NO &$\Rightarrow$& stateful\end{tabular}
     \end{itemize}
   \end{block}
-
 \end{frame}
 
-\begin{frame}
+\begin{frame}{fuzzing}
+
+  impact of modifications in the messages
+
+  \begin{itemize}
+    \item identify the type of the fields (static or dynamic)
+    \item take a message with a dynamic field
+    \item query the server with both the original and modified message
+    \item calculate the difference between the two
+  \end{itemize}
+
+  \begin{center}\includegraphics[scale=0.4]{modify.png}\end{center}
+
 \end{frame}
