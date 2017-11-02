@@ -1,8 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{RoadMap}{7}{0}{2}
-\beamer@sectionintoc {3}{Reconstructing Fields}{13}{0}{3}
-\beamer@sectionintoc {4}{Characterizing Fields}{16}{0}{4}
-\beamer@sectionintoc {5}{Finding Protocol Behaviour}{18}{0}{5}
-\beamer@sectionintoc {6}{Experiments demonstration}{20}{0}{6}
-\beamer@sectionintoc {7}{Future Work}{21}{0}{7}
