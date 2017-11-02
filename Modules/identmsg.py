@@ -28,7 +28,7 @@ def detect_encoding(field):
         st={2:"H",4:"I",8:"L"}
         lv=len(v[0])
         if lv in [2,4,8]:
-            N=[struct.unpack(">"+st(lv),x)[0] for x in v]
+            N=[struct.unpack(">"+st[lv],x)[0] for x in v]
             return ("%dbits INTEGER[%d,%d] or BINARY" % (len(lv)*8, min(N), max(N)))
     else:
         return "BINARY"
