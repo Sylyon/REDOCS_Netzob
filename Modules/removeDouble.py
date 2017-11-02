@@ -22,6 +22,8 @@ def removeDouble(aList):
 		tmp2=str(i)
 		tmp2=tmp2.replace("[","")
 		tmp2=tmp2.replace("]","")
+		tmp2=tmp2.replace("b","")
+		tmp2=tmp2.replace("'","")
 		tmp.append(tmp2)
 	iComp=0
 	for i in tmp:
