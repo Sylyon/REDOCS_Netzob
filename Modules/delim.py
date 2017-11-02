@@ -27,6 +27,8 @@ def possible_delim(L,th=0.9):
 def verifDelim(msgs):
     L=[x.data for x in msgs]
     D=possible_delim(L)
+    for j in range(0,len(D)):
+        print(D[j][0])
     Del=[]
     d=D[0]
     for d in D:
@@ -41,7 +43,6 @@ def verifDelim(msgs):
             Del.append(d[0])
             pass
              
-
     return removeDouble(Del)
     
 	
@@ -52,7 +53,7 @@ if __name__=="__main__":
     from imitateValidTraffic import *
     from replayTraffic import *
     from removeDouble import *
-    msgs=PCAPImporter.readFile('../S7-Pcaps/Ws.pcap').values()
+    msgs=PCAPImporter.readFile('../S7-Pcaps/R1.pcap').values()
     D=verifDelim(msgs)
     print(D)
 
