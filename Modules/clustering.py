@@ -3,6 +3,12 @@ from sklearn.cluster import dbscan
 import math
 import copy
 
+def hamming_byte(x,y):
+    """
+    hamming_bytes - hamming distance on the bytes
+    """
+    return sum([x!=y for x,y in zip(x,y)])
+
 def cluster(L,eps=100):
     """
     cluster - separate messages in differents cluster

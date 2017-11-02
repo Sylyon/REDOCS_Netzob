@@ -6,6 +6,7 @@ import socket
 import copy
 import random
 import identmsg
+from clustering import hamming_byte
 
 def sendTCP_raw_bytes(data,ip,port):
     """
@@ -73,5 +74,5 @@ if __name__ == '__main__':
             print ("Index %d is dynamic!" % idx)
             print (field)
     #print (myTup)
-    diff_msg(sym,0,b'\x03\x00', "157.136.198.69", 102)
+    print("diff:", diff_msg(sym,0,b'\x03\x00', "157.136.198.69", 102))
 
