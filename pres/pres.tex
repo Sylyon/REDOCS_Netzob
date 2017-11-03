@@ -123,8 +123,8 @@ pil/.style={
 \bibliography{abbrev3,crypto,add,add2}
 
 
-\title{Using Netzob for Active protocol reverse engineering }   
-\author{Onur Catakoglu , Bastien Drouot, Paul Germouty, Florent Tardif,  Fr\'{e}d\'{e}ric Guih\'{e}} 
+\title{Using Netzob for protocol reverse engineering }   
+\author{Onur CATAKOGLU , Bastien DROUOT,\\ Paul GERMOUTY, Florent TARDIF\\~\\ Advisor: Fr\'{e}d\'{e}ric GUIH\'{E}RY} 
 \date{November 2, 2017} 
 
 
@@ -152,27 +152,19 @@ pil/.style={
 %\end{center}
 \end{frame}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
 
 \section{Introduction}
 
+\begin{frame}{\bf Objective}
 
-\begin{frame}{Goal}
-
-  Reverse engineer protocols:
-
-  determine how they work without documentation
+  Our task: adopting an active approach to protocol reverse engineering
 
   ~
 
   \begin{block}{Attack Model}
     \begin{itemize}
-      \item no previous knowledge of the protocol
+      \item no previous knowledge of the protocol (no documentation)
       \item access to a client implementation
       \item passive monitoring / active querying of the server
     \end{itemize}
@@ -180,34 +172,33 @@ pil/.style={
 
 \end{frame}
 
-\begin{frame}{\textbf{Netzob}}
-  \em{Netzob}: framework helping the reverser to discover the protocol
+\begin{frame}{\bf \textbf{Netzob}}
+  \em{Netzob}: a framework helping the reverser to discover the protocol
  
   ~
 
-  Provide the following features:
+  Provides the following features:
 
   \begin{itemize}
     \item abstraction of requests with a symbolic representation with fields
-    \item tools to send TCP/symbolic messages to the server
-    \item symbolic functions to split messages in fields:\\
+    \item tools to send messages to the server
+    \item functions to split messages in fields:\\
     \quad\quad$\rightarrow$ \texttt{splitStatic}: use static messages parts\\
     \quad\quad$\rightarrow$ \texttt{splitAligned}: detect moving reccurrent parts\\
     \quad\quad$\rightarrow$ \texttt{splitDelimiter}: use manually entered delimiters
   \end{itemize}
 
-
 \end{frame}
 
 
-\begin{frame}{Examples}
-  Analyse with \texttt{SpliAligned}
+\begin{frame}{\bf Example 1}
+  Analyse with \texttt{SplitAligned}
   ~
 
   \tiny\input{splitaligned.tex}
 \end{frame}
 
-\begin{frame}{Examples}
+\begin{frame}{\bf Example 2}
   Analyse with \texttt{SpliStatic}
 
   ~
@@ -215,7 +206,7 @@ pil/.style={
   \tiny\input{splitstatic.tex}
 \end{frame}
 
-\begin{frame}{Examples}
+\begin{frame}{\bf Example 3}
   Analyse with \texttt{SplitDelimiter} with delimiter \texttt{\symbol{92}x02}
 
   ~
@@ -224,40 +215,8 @@ pil/.style={
 \end{frame}
 
 \section{RoadMap}
-\begin{frame}
 
-	\tableofcontents[currentsection]
-\end{frame}
-
-\begin{frame}{Road Map of GoodGuy ReverseIngBoy}
-%%\begin{enumerate}
-%%\item Sorting Input
-%%
-%%\bigskip
-%%
-%%\item Delimiting fields
-%%
-%%\bigskip 
-%%
-%%\item Characterizing fields
-%%
-%%\bigskip
-%%
-%%\item Assessing impact of the fields
-%%
-%%\bigskip
-%%
-%%\item Verifying hypothesis made in 3 and 4
-%%\end{enumerate}
-%\begin{center}
-%\scalebox{0.7}{
-%\smartdiagram[priority descriptive diagram]{
-%  Verifying hypothesis made in 3 and 4,
-%  Assessing impact of the fields,
-%  Characterizing fields,
-%  Delimiting fields,
-%  Sorting Input}}
-%\end{center}
+\begin{frame}{\bf Roadmap}
 
 %\begin{frame}
 \begin{center}
@@ -267,15 +226,15 @@ pil/.style={
 
 \node (Input)             [activityStarts]              {Input};
 
-\node (SI)     [process, below of=Input]          {Sorting};
+\node (SI)     [process, below of=Input]          {Select messages};
 
-\node (DF)     [process, below of=SI]          {Delimiting Fields};
+\node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterizing Fields};
+\node (CF)     [process, below of=DF]          {Characterize Fields};
 
-\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+\node (AI)     [process, below of=CF]          {Assess impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+\node (VH)     [process, below of=AI]          {Verify hypothesis};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -291,7 +250,7 @@ pil/.style={
 
 
 
-\begin{frame}{Sorting Input}
+\begin{frame}{\bf Sorting Input}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -299,15 +258,15 @@ pil/.style={
 
 \node (Input)             [activityStarts]              {Input};
 
-\node (SI)     [startstop, below of=Input]          {Sorting};
+\node (SI)     [startstop, below of=Input]          {Select messages};
 
-\node (DF)     [process, below of=SI]          {Delimiting Fields};
+\node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterizing Fields};
+\node (CF)     [process, below of=DF]          {Characterize Fields};
 
-\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+\node (AI)     [process, below of=CF]          {Assess impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+\node (VH)     [process, below of=AI]          {Verify hypothesis};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -320,7 +279,7 @@ pil/.style={
 
 
 
-\begin{frame}{Divide and Conquer}
+\begin{frame}{\bf Divide and Conquer}
 \begin{center}
 \includegraphics[scale=0.25]{Sorting_by_type.png}
 \end{center}
@@ -347,7 +306,7 @@ pil/.style={
 %
 %
 %\end{frame}
-\begin{frame}{Delimiting Fields}
+\begin{frame}{\bf Delimit fields}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -355,15 +314,15 @@ pil/.style={
 
 \node (Input)             [activityStarts]              {Input};
 
-\node (SI)     [process, below of=Input]          {Sorting};
+\node (SI)     [process, below of=Input]          {Select messages};
 
-\node (DF)     [startstop, below of=SI]          {Delimiting Fields};
+\node (DF)     [startstop, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterizing Fields};
+\node (CF)     [process, below of=DF]          {Characterize Fields};
 
-\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+\node (AI)     [process, below of=CF]          {Assess impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+\node (VH)     [process, below of=AI]          {Verify hypothesis};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -375,7 +334,7 @@ pil/.style={
 \end{frame}
 
 %
-\begin{frame}{Delimiters}
+\begin{frame}{\bf Delimiters}
 \begin{itemize}
 \item Statistical research
 
@@ -390,7 +349,7 @@ pil/.style={
 
 \end{frame}
 
-\begin{frame}{Delimiters using}
+\begin{frame}{\bf Using delimiters}
     Analyse with \texttt{Delim}
 
   ~
@@ -398,7 +357,7 @@ pil/.style={
   \tiny\input{newdelim.tex}
 \end{frame}
 
-\begin{frame}{SmartAligned}
+\begin{frame}{\bf SmartAligned}
   Analyse with \texttt{SmartAligned}
 
   ~
@@ -408,7 +367,7 @@ pil/.style={
 
 
 
-\begin{frame}{Characterizing Fields}
+\begin{frame}{\bf Characterizing Fields}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -416,15 +375,15 @@ pil/.style={
 
 \node (Input)             [activityStarts]              {Input};
 
-\node (SI)     [process, below of=Input]          {Sorting};
+\node (SI)     [process, below of=Input]          {Select messages};
 
-\node (DF)     [process, below of=SI]          {Delimiting Fields};
+\node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [startstop, below of=DF]          {Characterizing Fields};
+\node (CF)     [startstop, below of=DF]          {Characterize Fields};
 
-\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+\node (AI)     [process, below of=CF]          {Assess impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+\node (VH)     [process, below of=AI]          {Verify hypothesis};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -435,7 +394,7 @@ pil/.style={
   \end{center}
 \end{frame}
 
-\begin{frame}{Characterizing Fields}
+\begin{frame}{\bf Characterizing Fields}
 \begin{itemize}
 \item Static / Dynamic
 
@@ -447,7 +406,7 @@ pil/.style={
 
 
 
-\begin{frame}{Assessing the Impact of the Fields}
+\begin{frame}{\bf Assessing the Impact of the Fields}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -455,15 +414,15 @@ pil/.style={
 
 \node (Input)             [activityStarts]              {Input};
 
-\node (SI)     [process, below of=Input]          {Sorting};
+\node (SI)     [process, below of=Input]          {Select messages};
 
-\node (DF)     [process, below of=SI]          {Delimiting Fields};
+\node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterizing Fields};
+\node (CF)     [process, below of=DF]          {Characterize Fields};
 
-\node (AI)     [startstop, below of=CF]          {Assessing Impact of the Field};
+\node (AI)     [startstop, below of=CF]          {Assess impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verifying Hypothesis};
+\node (VH)     [process, below of=AI]          {Verify hypothesis};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -474,13 +433,13 @@ pil/.style={
   \end{center}
 \end{frame}
 
-\begin{frame}{Fields Order Importance}
+\begin{frame}{\bf Fields Order Importance}
 \begin{center}
 \includegraphics[scale=0.25]{swapFieldOrder.png}
 \end{center}
 \end{frame}
 
-\begin{frame}{Finding Incrementation }
+\begin{frame}{\bf Finding Incrementation }
 \begin{center}
 \includegraphics[scale=0.3]{incrementation.png}
 \end{center}
@@ -493,7 +452,7 @@ pil/.style={
 \input{fuzzing.tex}
 
 
-\begin{frame}{Verifying Hypothesis}
+\begin{frame}{\bf Verifying Hypothesis}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -501,15 +460,15 @@ pil/.style={
 
 \node (Input)             [activityStarts]              {Input};
 
-\node (SI)     [process, below of=Input]          {Sorting};
+\node (SI)     [process, below of=Input]          {Select messages};
 
-\node (DF)     [process, below of=SI]          {Delimiting Fields};
+\node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterizing Fields};
+\node (CF)     [process, below of=DF]          {Characterize Fields};
 
-\node (AI)     [process, below of=CF]          {Assessing Impact of the Field};
+\node (AI)     [process, below of=CF]          {Assess impact of the fields};
 
-\node (VH)     [startstop, below of=AI]          {Verifying Hypothesis};
+\node (VH)     [startstop, below of=AI]          {Verify hypothesis};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -521,7 +480,7 @@ pil/.style={
   
   \end{frame}
   
-  \begin{frame}{Verifying Hypothesis}
+  \begin{frame}{\bf Verifying Hypothesis}
   \begin{itemize}
   \item Change a static field
 
@@ -548,7 +507,7 @@ pil/.style={
 
 \section{Conclusion}
 
-\begin{frame}{Personal Experience}
+\begin{frame}{\bf Personal Experience}
 \begin{itemize}
 \item Good Points
 \begin{itemize}
@@ -572,7 +531,7 @@ pil/.style={
 \section{Future Work}
 
 
-\begin{frame}{Improvements}
+\begin{frame}{\bf Improvements}
 
 \begin{itemize}
     \item apply \texttt{CrucialSearch} on larger scale
