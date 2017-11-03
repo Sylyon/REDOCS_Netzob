@@ -1,3 +1,5 @@
+
+
 def get_grams(s,l):
     return [s[i:i+l] for i in range(len(s)-l)]
 
@@ -25,6 +27,12 @@ def possible_delim(L,th=0.9):
     return R
 
 def verifDelim(msgs):
+
+    """take as input a message,
+       look for possible delimiters,
+       verify for each potential delimiter if the server timeout 
+       if it doesn't this is not a delimiter
+	remove doubles/inclusion between potential delimiters"""
     L=[x.data for x in msgs]
     D=possible_delim(L)
     for j in range(0,len(D)):
