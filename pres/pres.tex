@@ -127,8 +127,8 @@ pil/.style={
 	\begin{tikzpicture}[remember picture,overlay]
     \node[xshift=2cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{onur.jpg}};
     \node[xshift=4cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.1]{bastien.png}};
-    \node[xshift=6cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.1]{florent.png}};
     \node[xshift=8cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.1]{xlim.png}};
+    \node[xshift=6cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.1]{florent.png}};
     \node[xshift=10cm,yshift=2cm] at (current page.south west) {\includegraphics[scale=0.05]{amossys.png}};
 \end{tikzpicture}
 
@@ -143,7 +143,7 @@ pil/.style={
 
 \begin{frame}{\bf Objective}
 
-  Our task: adopting an active approach to protocol reverse engineering
+  Adopt an active approach to protocol reverse engineering
 
   ~
 
@@ -158,20 +158,22 @@ pil/.style={
 \end{frame}
 
 \begin{frame}{\bf \textbf{Netzob}}
-  \em{Netzob}: a framework helping the reverser to discover the protocol
+  A framework helping the reverser to discover the protocol
  
   ~
 
-  Provides the following features:
-
   \begin{itemize}
     \item abstraction of requests with a symbolic representation with fields
-    \item tools to send messages to the server
+    \item methods to send messages to the server
     \item functions to split messages in fields:\\
     \quad\quad$\rightarrow$ \texttt{splitStatic}: use static messages parts\\
     \quad\quad$\rightarrow$ \texttt{splitAligned}: detect moving reccurrent parts\\
     \quad\quad$\rightarrow$ \texttt{splitDelimiter}: use manually entered delimiters
   \end{itemize}
+
+  ~
+
+  Experimentation on Snap7 (S7) protocol, \\used in SCADA communication
 
 \end{frame}
 
@@ -199,9 +201,9 @@ pil/.style={
   \tiny\input{splitdelim.tex}
 \end{frame}
 
-\section{RoadMap}
+\section{Outline}
 
-\begin{frame}{\bf Roadmap}
+\begin{frame}{\bf Outline}
 
 %\begin{frame}
 \begin{center}
@@ -235,7 +237,7 @@ pil/.style={
 
 
 
-\begin{frame}{\bf Sorting Input}
+\begin{frame}{\bf Select messages}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -264,9 +266,16 @@ pil/.style={
 
 
 
-\begin{frame}{\bf Divide and Conquer}
+\begin{frame}{\bf Select messages}
 \begin{center}
 \includegraphics[scale=0.25]{Sorting_by_type.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{\bf Pcap definition}
+\begin{center}
+\includegraphics[scale=0.30]{pcapDeffinition.png}
 \end{center}
 \end{frame}
 
@@ -319,27 +328,15 @@ pil/.style={
 \end{frame}
 
 %
-\begin{frame}{\bf Delimiters}
+\begin{frame}{\bf Fields search}
 \begin{itemize}
-\item Statistical research
 
+\item Improved aligned search (\texttt{Smartaligned})
 \bigskip
+\item Field search with delimiters (\texttt{Delim})
 
-\item Active verification
-
-\bigskip
-
-\item Double elimination
 \end{itemize}
 
-\end{frame}
-
-\begin{frame}{\bf Using delimiters}
-    Analyse with \texttt{Delim}
-
-  ~
-
-  \tiny\input{newdelim.tex}
 \end{frame}
 
 \begin{frame}{\bf SmartAligned}
@@ -348,6 +345,14 @@ pil/.style={
   ~
 
   \tiny\input{shapingsplitalign.tex}
+\end{frame}
+
+\begin{frame}{\bf Using delimiters}
+    Analyse with \texttt{Delim}
+
+  ~
+
+  \tiny\input{newdelim.tex}
 \end{frame}
 
 
@@ -374,24 +379,20 @@ pil/.style={
 
 \begin{frame}{\bf Characterizing fields}
   \begin{itemize}
-    \item Static / Dynamic
+    \item Static fields / Dynamic fields
 
     \bigskip
 
-    \item Txt / Bin
+    \item Types: TEXT / BINARY / INTEGER
 
   \end{itemize}
 
   \begin{itemize}
   \item Change a static field
 
-  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
+    $\rightarrow$ if error/timeout $\Rightarrow$ confirm static field (possibly a keyword)
   
-  \bigskip
-
-  \item Put binary value in a text field
   
-  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
   \end{itemize}
   
 \end{frame}
@@ -437,11 +438,11 @@ pil/.style={
 \end{center}
 \end{frame}
 
-\begin{frame}\frametitle{Stateless vs. Stateful}
+\begin{frame}\frametitle{Stateless vs. stateful}
 
   Stateful messages:
   \begin{itemize}
-    \item depends on a global state (ex. authentication)
+    \item depend on a global state (ex. authentication)
     \item require understanding of the session mechanism
   \end{itemize}
 
@@ -449,8 +450,8 @@ pil/.style={
 
   Stateless messages: 
   \begin{itemize}
-    \item returns the same responses
-    \item does not have any session
+    \item return the same responses
+    \item do not have any session
   \end{itemize}
 
   ~
@@ -505,31 +506,29 @@ pil/.style={
 
 \section{Conclusion}
 
-\begin{frame}{\bf Personal Experience}
-\begin{itemize}
-\item Good Points
-\begin{itemize}
-\item Team cohesion 
-\item Interest for the subject
-\item Many ideas
-\item Late organization
-\end{itemize}
-
-\item Points to Improve 
-\begin{itemize}
-\item Extend the time allowed for playing with tools
-\item Early organization 
-\item Limiting the area of research
-\end{itemize}
-\end{itemize}
-
-
-\end{frame}
+%\begin{frame}{\bf Personal Experience}
+%\begin{itemize}
+%  \item Good Points
+%  \begin{itemize}
+%    \item Team cohesion 
+%    \item Interest for the subject
+%    \item Many ideas
+%    \item Late organization
+%  \end{itemize}
+%
+%  \item Points to Improve 
+%  \begin{itemize}
+%    \item Extend the time allowed for playing with tools
+%    \item Early organization 
+%    \item Limiting the area of research
+%  \end{itemize}
+%\end{itemize}
+%\end{frame}
 
 \section{Future Work}
 
 
-\begin{frame}{\bf Improvements}
+\begin{frame}{\bf Future work}
 
 \begin{itemize}
     \item Apply \texttt{CrucialSearch} on larger scale
@@ -538,5 +537,25 @@ pil/.style={
     \item Determinate boundaries
 \end{itemize}
 \end{frame}
+
+\begin{frame}\frametitle{\bf Conclusions}
+  \begin{itemize}
+    \item Used and improved the methods of {\em Netzob} (ex. delimiters)
+    \item Adopted an "active" strategy to study the behavior of the fields in messages (ex. characterization of fields)
+    \item Conducted experiments with a real world protocol (S7)
+    \item Explored the relationship between dymamic fields and response messages
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Thank you for your attention}
+  \begin{minipage}[t]{.5\textwidth}
+    5813 lines of code\\156 commits\\4 contributors\\\vspace{3cm}
+  \end{minipage}\begin{minipage}[t]{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.15]{board.jpg}
+  \end{minipage}
+
+\end{frame}
+
 
 \end{document}
