@@ -352,24 +352,17 @@ pil/.style={
 
 
 
-\begin{frame}{\bf Characterizing Fields}
+\begin{frame}{\bf Characterizing fields}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
     every node/.style={fill=white, font=\sffamily}, align=center]
-
 \node (Input)             [activityStarts]              {Input};
-
 \node (SI)     [process, below of=Input]          {Select messages};
-
 \node (DF)     [process, below of=SI]          {Delimit fields};
-
 \node (CF)     [startstop, below of=DF]          {Characterize fields};
-
 \node (AI)     [process, below of=CF]          {Assess the impact of the fields};
-
 \node (VH)     [process, below of=AI]          {Demonstration};
-
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
 \draw[->]             (DF) -- (CF);
@@ -379,7 +372,7 @@ pil/.style={
   \end{center}
 \end{frame}
 
-\begin{frame}{\bf Characterizing Fields}
+\begin{frame}{\bf Characterizing fields}
   \begin{itemize}
     \item Static / Dynamic
 
@@ -432,13 +425,13 @@ pil/.style={
   \end{center}
 \end{frame}
 
-\begin{frame}{\bf Fields Order Importance}
+\begin{frame}{\bf Fields order importance}
 \begin{center}
 \includegraphics[scale=0.25]{swapFieldOrder.png}
 \end{center}
 \end{frame}
 
-\begin{frame}{\bf Find Increment}
+\begin{frame}{\bf Find increment}
 \begin{center}
 \includegraphics[scale=0.3]{incrementation.png}
 \end{center}
