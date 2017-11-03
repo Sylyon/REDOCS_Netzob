@@ -186,7 +186,7 @@ pil/.style={
 \end{frame}
 
 \begin{frame}{\bf Example 2}
-  Analyse with \texttt{SpliStatic}
+  Analyse with \texttt{SplitStatic}
 
   ~
 
@@ -331,12 +331,20 @@ pil/.style={
 \begin{frame}{\bf Fields search}
 \begin{itemize}
 
-\item Improved aligned search (\texttt{Smartaligned})
-\bigskip
 \item Field search with delimiters (\texttt{Delim})
+\bigskip
+\item Improved aligned search (\texttt{Smartaligned})
 
 \end{itemize}
 
+\end{frame}
+
+\begin{frame}{\bf Using delimiters}
+    Analyse with \texttt{Delim}
+
+  ~
+
+  \tiny\input{newdelim.tex}
 \end{frame}
 
 \begin{frame}{\bf SmartAligned}
@@ -347,13 +355,23 @@ pil/.style={
   \tiny\input{shapingsplitalign.tex}
 \end{frame}
 
-\begin{frame}{\bf Using delimiters}
-    Analyse with \texttt{Delim}
+\begin{frame}{\bf Automated \texttt{SmartAligned}}
 
-  ~
+  Directly cluster messages by similarity
+  \begin{itemize}
+    \bigskip
+  \item Apply a \textsf{DBSCAN} on a set of (not selected) messages\\
+  \item Get several clusters of messages grouped by similarity\\
+    \quad $\rightarrow$ probably same type of messages in each cluster\\
+     \quad\quad  {\small (ex. HTTP GET, HTTP POST)}
+    \item Apply \texttt{SplitAligned} on each cluster
+  \end{itemize}
 
-  \tiny\input{newdelim.tex}
+    \bigskip
+  But: need a large number of valid distincts messages
+  
 \end{frame}
+
 
 
 
@@ -542,10 +560,10 @@ pil/.style={
 \begin{frame}{\bf Future work}
 
 \begin{itemize}
-    \item Apply \texttt{CrucialSearch} on larger scale
     \item Dependency of fields\\
     \begin{center}\includegraphics[scale=0.5]{relations.png}\end{center}
     \item Determinate boundaries
+    \item Increase number of generated messages to apply clustering technique
 \end{itemize}
 \end{frame}
 
