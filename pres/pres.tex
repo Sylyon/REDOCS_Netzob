@@ -105,25 +105,10 @@ pil/.style={
 
 \begin{document}
 
-%\usepackage{framed}
-%\usepackage{cite,url}
-%\usepackage{amsmath,amssymb}
-%\usepackage{amscd}
-%\usepackage[english] {babel}
-%\usepackage[pdftex]{graphicx,color}
-%\usepackage{stmaryrd}
-%\usepackage{amsmath}
-%\usepackage{xspace,calc}
-%\usepackage{games}
-%\usepackage{booktabs}
-%\usepackage{needspace}
-%\use package{times}
-%\usepackage{algorithmicx} % sorry
-
 \bibliography{abbrev3,crypto,add,add2}
 
 
-\title{Using Netzob for protocol reverse engineering }   
+\title{\bf Using Netzob for protocol reverse engineering }   
 \author{Onur CATAKOGLU , Bastien DROUOT,\\ Paul GERMOUTY, Florent TARDIF\\~\\ Advisor: Fr\'{e}d\'{e}ric GUIH\'{E}RY} 
 \date{November 2, 2017} 
 
@@ -230,11 +215,11 @@ pil/.style={
 
 \node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterize Fields};
+\node (CF)     [process, below of=DF]          {Characterize fields};
 
-\node (AI)     [process, below of=CF]          {Assess impact of the fields};
+\node (AI)     [process, below of=CF]          {Assess the impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verify hypothesis};
+\node (VH)     [process, below of=AI]          {Demonstration};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -262,11 +247,11 @@ pil/.style={
 
 \node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterize Fields};
+\node (CF)     [process, below of=DF]          {Characterize fields};
 
-\node (AI)     [process, below of=CF]          {Assess impact of the fields};
+\node (AI)     [process, below of=CF]          {Assess the impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verify hypothesis};
+\node (VH)     [process, below of=AI]          {Demonstration};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -318,11 +303,11 @@ pil/.style={
 
 \node (DF)     [startstop, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterize Fields};
+\node (CF)     [process, below of=DF]          {Characterize fields};
 
-\node (AI)     [process, below of=CF]          {Assess impact of the fields};
+\node (AI)     [process, below of=CF]          {Assess the impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verify hypothesis};
+\node (VH)     [process, below of=AI]          {Demonstration};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -379,11 +364,11 @@ pil/.style={
 
 \node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [startstop, below of=DF]          {Characterize Fields};
+\node (CF)     [startstop, below of=DF]          {Characterize fields};
 
-\node (AI)     [process, below of=CF]          {Assess impact of the fields};
+\node (AI)     [process, below of=CF]          {Assess the impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verify hypothesis};
+\node (VH)     [process, below of=AI]          {Demonstration};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -395,18 +380,32 @@ pil/.style={
 \end{frame}
 
 \begin{frame}{\bf Characterizing Fields}
-\begin{itemize}
-\item Static / Dynamic
+  \begin{itemize}
+    \item Static / Dynamic
 
-\bigskip
+    \bigskip
 
-\item Txt / Bin
-\end{itemize}
+    \item Txt / Bin
+
+  \end{itemize}
+
+  \begin{itemize}
+  \item Change a static field
+
+  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
+  
+  \bigskip
+
+  \item Put binary value in a text field
+  
+  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
+  \end{itemize}
+  
 \end{frame}
 
 
 
-\begin{frame}{\bf Assessing the Impact of the Fields}
+\begin{frame}{\bf Assess the impact of the fields}
 \begin{center}
 \scalebox{0.9}{
 \begin{tikzpicture}[node distance=1.5cm,
@@ -418,11 +417,11 @@ pil/.style={
 
 \node (DF)     [process, below of=SI]          {Delimit fields};
 
-\node (CF)     [process, below of=DF]          {Characterize Fields};
+\node (CF)     [process, below of=DF]          {Characterize fields};
 
-\node (AI)     [startstop, below of=CF]          {Assess impact of the fields};
+\node (AI)     [startstop, below of=CF]          {Assess the impact of the fields};
 
-\node (VH)     [process, below of=AI]          {Verify hypothesis};
+\node (VH)     [process, below of=AI]          {Demonstration};
 
 \draw[->]             (Input) -- (SI);
 \draw[->]             (SI) -- (DF);
@@ -439,18 +438,53 @@ pil/.style={
 \end{center}
 \end{frame}
 
-\begin{frame}{\bf Finding Incrementation }
+\begin{frame}{\bf Find Increment}
 \begin{center}
 \includegraphics[scale=0.3]{incrementation.png}
 \end{center}
 \end{frame}
 
+\begin{frame}\frametitle{Stateless vs. Stateful}
 
+  Stateful messages:
+  \begin{itemize}
+    \item depends on a global state (ex. authentication)
+    \item require understanding of the session mechanism
+  \end{itemize}
 
+  ~
 
+  Stateless messages: 
+  \begin{itemize}
+    \item returns the same responses
+    \item does not have any session
+  \end{itemize}
 
-\input{fuzzing.tex}
+  ~
 
+  \begin{block}{Detection}
+    \begin{itemize}
+      \item get a valid message
+      \item replay the message several time
+      \item same messages ? \begin{tabular}{ccc}YES &$\Rightarrow$& stateless\\NO &$\Rightarrow$& stateful\end{tabular}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fuzzing}
+
+  Impact of modifications in the messages
+
+  \begin{itemize}
+    \item identify the type of the fields (static or dynamic)
+    \item take a message with a dynamic field
+    \item query the server with both the original and modified message
+    \item calculate the difference between the two
+  \end{itemize}
+
+  \begin{center}\includegraphics[scale=0.4]{modify.png}\end{center}
+
+\end{frame}
 
 \begin{frame}{\bf Verifying Hypothesis}
 \begin{center}
@@ -458,51 +492,22 @@ pil/.style={
 \begin{tikzpicture}[node distance=1.5cm,
     every node/.style={fill=white, font=\sffamily}, align=center]
 
-\node (Input)             [activityStarts]              {Input};
-
-\node (SI)     [process, below of=Input]          {Select messages};
-
-\node (DF)     [process, below of=SI]          {Delimit fields};
-
-\node (CF)     [process, below of=DF]          {Characterize Fields};
-
-\node (AI)     [process, below of=CF]          {Assess impact of the fields};
-
-\node (VH)     [startstop, below of=AI]          {Verify hypothesis};
-
-\draw[->]             (Input) -- (SI);
-\draw[->]             (SI) -- (DF);
-\draw[->]             (DF) -- (CF);
-\draw[->]             (CF) -- (AI);
-\draw[->]             (AI) -- (VH);
+    \node (Input)  [activityStarts]          {Input};
+    \node (SI)     [process, below of=Input] {Select messages};
+    \node (DF)     [process, below of=SI]    {Delimit fields};
+    \node (CF)     [process, below of=DF]    {Characterize fields};
+    \node (AI)     [process, below of=CF]    {Assess the impact of the fields};
+    \node (VH)     [startstop, below of=AI]  {Demonstration};
+    \draw[->]      (Input) -- (SI);
+    \draw[->]      (SI) -- (DF);
+    \draw[->]      (DF) -- (CF);
+    \draw[->]      (CF) -- (AI);
+    \draw[->]      (AI) -- (VH);
   \end{tikzpicture}}
   \end{center}
   
   \end{frame}
   
-  \begin{frame}{\bf Verifying Hypothesis}
-  \begin{itemize}
-  \item Change a static field
-
-  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
-  
-  \bigskip
-
-  \item Put binary value in a text field
-  
-  $\Rightarrow$ get no error/timeout $\rightarrow$ False H
-  
-  
-\bigskip
-
-  \item Try to swap fields
-  
-\bigskip
-
-	\item ...  
-  \end{itemize}
-  \end{frame}
-
 
 
 \section{Conclusion}
@@ -519,7 +524,7 @@ pil/.style={
 
 \item Points to Improve 
 \begin{itemize}
-\item Extend the time allowed for toying with tools
+\item Extend the time allowed for playing with tools
 \item Early organization 
 \item Limiting the area of research
 \end{itemize}
@@ -534,12 +539,10 @@ pil/.style={
 \begin{frame}{\bf Improvements}
 
 \begin{itemize}
-    \item apply \texttt{CrucialSearch} on larger scale
-    \item analyzing impact of field field modification\\
-    \quad\quad $\rightarrow$ apply fuzzing on a particular field
-    \item dependency of fields\\
+    \item Apply \texttt{CrucialSearch} on larger scale
+    \item Dependency of fields\\
     \begin{center}\includegraphics[scale=0.5]{relations.png}\end{center}
-    \item scripting the whole process
+    \item Determinate boundaries
 \end{itemize}
 \end{frame}
 
